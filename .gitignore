@@ -1,0 +1,9 @@
+# Dependency directories
+node_modules
+
+# wrangler
+.wrangler/
+
+# Environment variables
+.dev.vars
+.env

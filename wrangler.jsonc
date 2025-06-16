@@ -1,0 +1,20 @@
+{
+  "name": "cloudflare-elysia-vitepress-template",
+  "main": "./server/src/index.ts",
+  "compatibility_date": "2025-06-16",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "nodejs_compat_populate_process_env"
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "cloudflare-elysia-vitepress-template-d1",
+      "database_id": "cab84589-9818-4e74-af07-36838ae4bc96",
+      "migrations_dir": "drizzle/migrations"
+    }
+  ]
+}

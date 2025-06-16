@@ -1,0 +1,17 @@
+import { Elysia } from "elysia";
+import { drizzle } from "drizzle-orm/d1";
+import * as schema from "../database/schema";
+import { app } from "./controllers";
+import { Container, type Env } from "./utils/typedi";
+
+export default {
+    async fetch(request: Request, env: Env) {
+        const db = drizzle(env.DB, { schema });
+        Container.set("DrizzleDB", db);
+        Container.set("env", env);
+        const resp = await new Elysia({ aot: false })
+            .use(app)
+            .handle(request);
+        return resp;
+    },
+};

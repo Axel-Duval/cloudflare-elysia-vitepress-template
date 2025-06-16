@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1750079478473,
+      "tag": "0000_equal_power_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1750093667742,
+      "tag": "0001_nostalgic_betty_ross",
+      "breakpoints": true
+    }
+  ]
+}
