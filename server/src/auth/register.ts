@@ -1,11 +1,15 @@
-import { Elysia } from "elysia";
-import { registerModel } from "./setup";
-import { getDB } from "../utils/typedi";
-import { users } from "../../database/schema";
 import { eq } from "drizzle-orm";
+import { Elysia } from "elysia";
+import { users } from "../../database/schema";
+import { getDB } from "../utils/vars";
+import { registerModel } from "./setup";
 
-export const register = new Elysia()
+export const register = new Elysia({ aot: false })
     .use(registerModel)
+    .get("toto", async () => {
+        const db = getDB();
+        return await db.select().from(users);
+    })
     .post(
         "/register",
         async function handler({ body, status }) {
@@ -15,7 +19,8 @@ export const register = new Elysia()
             const userEntries = await db
                 .select()
                 .from(users)
-                .where(eq(users.email, body.email));
+                .where(eq(users.email, body.email))
+                .limit(1);
 
             if (userEntries.length) {
                 return status(409, "Email already exists");

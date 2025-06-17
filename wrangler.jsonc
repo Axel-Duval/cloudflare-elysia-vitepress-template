@@ -1,7 +1,7 @@
 {
   "name": "cloudflare-elysia-vitepress-template",
   "main": "./server/src/index.ts",
-  "compatibility_date": "2025-06-16",
+  "compatibility_date": "2025-06-04",
   "compatibility_flags": [
     "nodejs_compat",
     "nodejs_compat_populate_process_env"

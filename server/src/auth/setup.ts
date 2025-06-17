@@ -1,6 +1,5 @@
 import { jwt } from "@elysiajs/jwt";
 import { Elysia, t } from "elysia";
-import { getEnv } from "../utils/typedi";
 
 export const loginModel = new Elysia().model({
     loginModel: t.Object({

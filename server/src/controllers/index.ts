@@ -1,6 +1,6 @@
 import cors from "@elysiajs/cors";
 import Elysia from "elysia";
-import { getEnv } from "../utils/typedi";
+import { authGuard } from "../auth/guard";
 import { auth } from "../auth/plugin";
 
 export function app() {
@@ -9,7 +9,7 @@ export function app() {
             cors({
                 aot: false,
                 origin: [
-                    getEnv().FRONTEND_URL,
+                    process.env.FRONTEND_URL!,
                     "localhost:3333",
                 ],
                 methods: "*",
@@ -24,8 +24,9 @@ export function app() {
                 "access-control-allow-credentials"
             ] = "true";
         })
-        .get("/ping", () => "pong")
+        .get("/ping", () => process.env)
         .use(auth)
+        .use(authGuard)
         .get("/private", () => "hello from private route");
 }
 

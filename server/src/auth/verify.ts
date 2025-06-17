@@ -1,11 +1,11 @@
-import { Elysia } from "elysia";
 import cookie from "@elysiajs/cookie";
-import { basicAuthModel, jwtAccessSetup } from "./setup";
-import { getDB } from "../utils/typedi";
+import { and, eq } from "drizzle-orm";
+import { Elysia } from "elysia";
 import { login_codes, users } from "../../database/schema";
-import { eq, and } from "drizzle-orm";
+import { getDB } from "../utils/vars";
+import { basicAuthModel, jwtAccessSetup } from "./setup";
 
-export const verify = new Elysia()
+export const verify = new Elysia({ aot: false })
     .use(basicAuthModel)
     .use(cookie())
     .use(jwtAccessSetup)
@@ -28,7 +28,8 @@ export const verify = new Elysia()
                         eq(login_codes.email, body.email),
                         eq(login_codes.code, body.code)
                     )
-                );
+                )
+                .limit(1);
 
             if (!loginCodesEntries.length) {
                 return status(401, "Invalid email or code");
@@ -51,7 +52,8 @@ export const verify = new Elysia()
             const userEntries = await db
                 .select()
                 .from(users)
-                .where(eq(users.email, loginCode.email));
+                .where(eq(users.email, loginCode.email))
+                .limit(1);
 
             if (!userEntries.length) {
                 return status(
