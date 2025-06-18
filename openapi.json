@@ -1,0 +1,142 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API Documentation",
+    "description": "API documentation for your service",
+    "version": "1.0.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Use a valid JWT token for authentication"
+      }
+    },
+    "schemas": {}
+  },
+  "paths": {
+    "/time": {
+      "get": {
+        "operationId": "getTime",
+        "description": "Get the current server time",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "getHealth",
+        "description": "Check if the server is healthy",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "operationId": "getPosts",
+        "description": "Get all posts",
+        "tags": [
+          "Posts"
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/posts/": {
+      "post": {
+        "parameters": [],
+        "operationId": "postPosts",
+        "description": "Create a new post",
+        "tags": [
+          "Posts"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "description": "Content of the post",
+                    "minLength": 1,
+                    "maxLength": 500,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "description": "Content of the post",
+                    "minLength": 1,
+                    "maxLength": 500,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "description": "Content of the post",
+                    "minLength": 1,
+                    "maxLength": 500,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "description": "ID of the post",
+            "schema": {
+              "type": "string",
+              "minLength": 24,
+              "maxLength": 24
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "operationId": "getPostsById",
+        "description": "Get a post by ID",
+        "tags": [
+          "Posts"
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    }
+  }
+}

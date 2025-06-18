@@ -16,5 +16,10 @@
       "database_id": "cab84589-9818-4e74-af07-36838ae4bc96",
       "migrations_dir": "drizzle/migrations"
     }
-  ]
+  ],
+  "dev": {
+    "ip": "localhost",
+    "port": 8787,
+    "local_protocol": "http"
+  }
 }

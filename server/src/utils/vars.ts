@@ -10,17 +10,17 @@ export interface Env {
     FRONTEND_URL: string;
 }
 
-let singleton: AppDatabase;
+let singletonDB: AppDatabase;
 
 export const setDB = (db: AppDatabase) => {
-    singleton = db;
+    singletonDB = db;
 };
 
 export const getDB = () => {
-    if (!singleton) {
+    if (!singletonDB) {
         throw new Error(
             "Database not initialized. Call setDB first."
         );
     }
-    return singleton;
+    return singletonDB;
 };

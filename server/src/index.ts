@@ -1,8 +1,8 @@
 import { drizzle } from "drizzle-orm/d1";
-import { Elysia } from "elysia";
+import Elysia from "elysia";
 import * as schema from "../database/schema";
-import { app } from "./controllers";
-import { setDB, type Env } from "./utils/vars";
+import { setDB, type Env } from "./utils";
+import { app } from "./app";
 
 export default {
     async fetch(request: Request, env: Env) {
