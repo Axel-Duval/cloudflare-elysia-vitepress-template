@@ -1,2 +1,5 @@
 JWT_ACCESS_SECRET=<secret>
 FRONTEND_URL=localhost:3131
+
+AUTH0_DOMAIN=<auth0_domain>
+AUTH0_AUDIENCE=<auth0_audience>
